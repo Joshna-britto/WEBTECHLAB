@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Registration</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            text-align: center;
+        }
+
+        .container {
+            background-color: white;
+            width: 400px;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input, select, textarea {
+            width: 90%;
+            padding: 9px;
+            margin: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: blue;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            cursor: pointer;
+        }
+
+        h2 {
+            color: navy;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>User Registration Form</h2>
+
+        <form action="/server" method="POST">
+
+            Name:
+            <input type="text" name="name"
+                   placeholder="Enter your name"
+                   pattern="[A-Za-z ]+"
+                   title="Enter alphabets only"
+                   required>
+
+            Email:
+            <input type="email" name="email"
+                   placeholder="Enter your email"
+                   required>
+
+            Mobile Number:
+            <input type="tel" name="mobile"
+                   placeholder="Enter 10 digit mobile number"
+                   pattern="[0-9]{10}"
+                   title="Enter exactly 10 digits"
+                   required>
+
+            Age:
+            <input type="number" name="age"
+                   min="18" max="60"
+                   placeholder="Enter your age"
+                   required>
+
+            Gender:
+            <select name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            Address:
+            <textarea name="address"
+                      placeholder="Enter your address"
+                      required></textarea>
+
+            <br>
+
+            <button type="submit">Submit</button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

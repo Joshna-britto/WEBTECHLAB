@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM and Events</title>
+</head>
+
+<body>
+
+    <h1 id="heading">JavaScript DOM</h1>
+
+    <p id="intro" class="demo">
+        Welcome to JavaScript!
+    </p>
+
+    <button onclick="changeText()">Click Me</button>
+    <button ondblclick="doubleClick()">Double Click</button>
+
+    <p id="result"></p>
+
+    <input type="text" id="name"
+           placeholder="Enter your name"
+           onchange="showName()"
+           onkeyup="showKey()">
+
+    <p id="output"></p>
+
+    <script>
+
+        // Finding element by ID
+        var a = document.getElementById("heading");
+
+        // Finding elements by Tag Name
+        var b = document.getElementsByTagName("p");
+
+        // Finding elements by Class Name
+        var c = document.getElementsByClassName("demo");
+
+        // Finding elements using CSS Selector
+        var d = document.querySelectorAll("p.demo");
+
+        // Click Event
+        function changeText() {
+            document.getElementById("intro").innerHTML =
+                "Text changed using DOM!";
+        }
+
+        // Double Click Event
+        function doubleClick() {
+            document.getElementById("result").innerHTML =
+                "Double click event occurred!";
+        }
+
+        // Change Event
+        function showName() {
+            var name = document.getElementById("name").value;
+            document.getElementById("output").innerHTML =
+                "Hello " + name;
+        }
+
+        // Keyup Event
+        function showKey() {
+            document.getElementById("result").innerHTML =
+                "Keyboard event occurred!";
+        }
+
+        // Document Click Event
+        document.addEventListener("click", function() {
+            console.log("Document clicked");
+        });
+
+    </script>
+
+</body>
+</html>

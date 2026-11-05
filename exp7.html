@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JQuery Calculator</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            text-align: center;
+        }
+
+        .container {
+            background-color: white;
+            width: 350px;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input, select {
+            padding: 8px;
+            margin: 8px;
+            width: 180px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        h2 {
+            color: blue;
+        }
+
+        hr {
+            margin: 30px;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function() {
+
+            // Budget Calculator
+            $("#evaluate").click(function() {
+
+                let amount = parseFloat($("#amount").val());
+
+                let rent = parseFloat($("#rent").val());
+                let accessories = parseFloat($("#accessories").val());
+                let emergency = parseFloat($("#emergency").val());
+                let saving = parseFloat($("#saving").val());
+
+                let total = rent + accessories + emergency + saving;
+
+                if (isNaN(amount) || amount <= 0 ||
+                    isNaN(rent) || isNaN(accessories) ||
+                    isNaN(emergency) || isNaN(saving) ||
+                    rent < 0 || accessories < 0 ||
+                    emergency < 0 || saving < 0 ||
+                    rent > 100 || accessories > 100 ||
+                    emergency > 100 || saving > 100) {
+
+                    alert("Enter valid amount and percentages!");
+                    return;
+                }
+
+                if (Math.abs(total - 100) > 0.000001) {
+                    alert("Total percentage must be 100%!");
+                    return;
+                }
+
+                $("#rentResult").val((amount * rent / 100).toFixed(2));
+                $("#accessoriesResult").val((amount * accessories / 100).toFixed(2));
+                $("#emergencyResult").val((amount * emergency / 100).toFixed(2));
+                $("#savingResult").val((amount * saving / 100).toFixed(2));
+            });
+
+
+            // Cake Order Calculator
+            $("#calculate").click(function() {
+
+                let weight = $("#weight").val();
+                let tip = parseFloat($("#tip").val());
+
+                let price = 0;
+
+                if (weight == "0.5") {
+                    price = 100;
+                }
+                else if (weight == "1") {
+                    price = 200;
+                }
+                else if (weight == "2") {
+                    price = 400;
+                }
+
+                let tax = price * 9 / 100;
+                let tipAmount = price * tip / 100;
+                let total = price + tax + tipAmount;
+
+                $("#price").val(price.toFixed(2));
+                $("#tax").val(tax.toFixed(2));
+                $("#tipAmount").val(tipAmount.toFixed(2));
+                $("#cakeTotal").val(total.toFixed(2));
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+
+    <h1>JQuery Calculator</h1>
+
+    <!-- Budget Calculator -->
+    <div class="container">
+
+        <h2>Budget Calculator</h2>
+
+        Total Amount:
+        <br>
+        <input type="number" id="amount" placeholder="Enter amount">
+
+        <h3>Enter Percentage (%)</h3>
+
+        Room Rent:
+        <br>
+        <input type="number" id="rent" placeholder="Rent %">
+
+        <br>
+
+        Accessories:
+        <br>
+        <input type="number" id="accessories" placeholder="Accessories %">
+
+        <br>
+
+        Emergency:
+        <br>
+        <input type="number" id="emergency" placeholder="Emergency %">
+
+        <br>
+
+        Saving:
+        <br>
+        <input type="number" id="saving" placeholder="Saving %">
+
+        <br><br>
+
+        <button id="evaluate">Evaluate My Money</button>
+
+        <h3>Budget Results</h3>
+
+        Room Rent:
+        <br>
+        <input type="text" id="rentResult" readonly>
+
+        <br>
+
+        Accessories:
+        <br>
+        <input type="text" id="accessoriesResult" readonly>
+
+        <br>
+
+        Emergency:
+        <br>
+        <input type="text" id="emergencyResult" readonly>
+
+        <br>
+
+        Saving:
+        <br>
+        <input type="text" id="savingResult" readonly>
+
+    </div>
+
+    <hr>
+
+    <!-- Cake Order Calculator -->
+    <div class="container">
+
+        <h2>Cake Order Calculator</h2>
+
+        Select Cake Weight:
+        <br>
+
+        <select id="weight">
+            <option value="0.5">½ kg - ₹100</option>
+            <option value="1">1 kg - ₹200</option>
+            <option value="2">2 kg - ₹400</option>
+        </select>
+
+        <br><br>
+
+        Select Tip:
+        <br>
+
+        <select id="tip">
+            <option value="10">10%</option>
+            <option value="15">15%</option>
+            <option value="20">20%</option>
+        </select>
+
+        <br><br>
+
+        <button id="calculate">Calculate Bill</button>
+
+        <h3>Bill Details</h3>
+
+        Cake Price:
+        <br>
+        <input type="text" id="price" readonly>
+
+        <br>
+
+        Tax (9%):
+        <br>
+        <input type="text" id="tax" readonly>
+
+        <br>
+
+        Tip Amount:
+        <br>
+        <input type="text" id="tipAmount" readonly>
+
+        <br>
+
+        Total Amount:
+        <br>
+        <input type="text" id="cakeTotal" readonly>
+
+    </div>
+
+</body>
+</html>

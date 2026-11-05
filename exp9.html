@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Form Validation and Routing</title>
+
+    <!-- AngularJS Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            margin: 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: navy;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+            font-size: 18px;
+        }
+
+        .container {
+            background-color: white;
+            width: 400px;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 9px;
+            margin: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+        }
+
+        h2 {
+            color: navy;
+        }
+
+        .radio {
+            width: auto;
+        }
+    </style>
+
+    <script>
+        var app = angular.module("myApp", ["ngRoute"]);
+
+        // Routing Configuration
+        app.config(function($routeProvider) {
+
+            $routeProvider
+
+            .when("/", {
+                template: `
+                    <div class="container">
+                        <h2>Home Page</h2>
+                        <h3>Welcome to Our Website</h3>
+                        <p>This is a sample website developed using AngularJS.</p>
+                        <p>Use the navigation links to explore the pages.</p>
+                    </div>
+                `
+            })
+
+            .when("/about", {
+                template: `
+                    <div class="container">
+                        <h2>About Us</h2>
+                        <p>We provide useful information and services to users.</p>
+                        <p>This website demonstrates AngularJS routing.</p>
+                    </div>
+                `
+            })
+
+            .when("/services", {
+                template: `
+                    <div class="container">
+                        <h2>Our Services</h2>
+                        <p>1. Web Development</p>
+                        <p>2. Online Registration</p>
+                        <p>3. User Support</p>
+                    </div>
+                `
+            })
+
+            .when("/contact", {
+                template: `
+                    <div class="container">
+                        <h2>Contact Us</h2>
+                        <p>Email: support@example.com</p>
+                        <p>Phone: 9876543210</p>
+                        <p>Location: Tamil Nadu, India</p>
+                    </div>
+                `
+            })
+
+            .when("/register", {
+                template: `
+                    <div class="container" ng-controller="FormController">
+
+                        <h2>User Registration</h2>
+
+                        <form name="regForm" novalidate>
+
+                            Name:
+                            <input type="text"
+                                   name="name"
+                                   ng-model="user.name"
+                                   ng-pattern="/^[A-Za-z ]+$/"
+                                   required>
+
+                            <span class="error"
+                                  ng-show="regForm.name.$touched && regForm.name.$invalid">
+                                Enter a valid name without numbers.
+                            </span>
+
+                            <br>
+
+                            Password:
+                            <input type="password"
+                                   name="password"
+                                   ng-model="user.password"
+                                   ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$/"
+                                   required>
+
+                            <span class="error"
+                                  ng-show="regForm.password.$touched && regForm.password.$invalid">
+                                Minimum 8 characters with uppercase, lowercase and number.
+                            </span>
+
+                            <br>
+
+                            Age:
+                            <input type="number"
+                                   name="age"
+                                   ng-model="user.age"
+                                   min="18"
+                                   max="30"
+                                   required>
+
+                            <span class="error"
+                                  ng-show="regForm.age.$touched && regForm.age.$invalid">
+                                Age must be between 18 and 30.
+                            </span>
+
+                            <br>
+
+                            Mobile Number:
+                            <input type="text"
+                                   name="mobile"
+                                   ng-model="user.mobile"
+                                   ng-pattern="/^[0-9]{10}$/"
+                                   required>
+
+                            <span class="error"
+                                  ng-show="regForm.mobile.$touched && regForm.mobile.$invalid">
+                                Enter a valid 10-digit mobile number.
+                            </span>
+
+                            <br>
+
+                            Email:
+                            <input type="email"
+                                   name="email"
+                                   ng-model="user.email"
+                                   required>
+
+                            <span class="error"
+                                  ng-show="regForm.email.$touched && regForm.email.$invalid">
+                                Enter a valid email address.
+                            </span>
+
+                            <br>
+
+                            Gender:
+                            <select name="gender"
+                                    ng-model="user.gender"
+                                    required>
+                                <option value="">Select Gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+
+                            <span class="error"
+                                  ng-show="regForm.gender.$touched && regForm.gender.$invalid">
+                                Please select gender.
+                            </span>
+
+                            <br>
+
+                            State:
+                            <select name="state"
+                                    ng-model="user.state"
+                                    required>
+                                <option value="">Select State</option>
+                                <option>Tamil Nadu</option>
+                                <option>Kerala</option>
+                                <option>Karnataka</option>
+                                <option>Andhra Pradesh</option>
+                            </select>
+
+                            <span class="error"
+                                  ng-show="regForm.state.$touched && regForm.state.$invalid">
+                                Please select state.
+                            </span>
+
+                            <br><br>
+
+                            <button type="button"
+                                    ng-disabled="regForm.$invalid"
+                                    ng-click="submitForm()">
+                                Submit
+                            </button>
+
+                            <h3>{{message}}</h3>
+
+                        </form>
+
+                    </div>
+                `
+            })
+
+            .otherwise({
+                redirectTo: "/"
+            });
+
+        });
+
+
+        // Form Validation Controller
+        app.controller("FormController", function($scope) {
+
+            $scope.user = {};
+
+            $scope.submitForm = function() {
+                $scope.message = "Registration Successful!";
+            };
+
+        });
+
+    </script>
+
+</head>
+
+<body>
+
+    <h1>My AngularJS Website</h1>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="#!/">Home</a>
+        <a href="#!/about">About</a>
+        <a href="#!/services">Services</a>
+        <a href="#!/contact">Contact</a>
+        <a href="#!/register">Register</a>
+    </nav>
+
+    <!-- Routing View -->
+    <div ng-view></div>
+
+</body>
+</html>
+

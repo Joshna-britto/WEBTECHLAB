@@ -1,0 +1,940 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Page information -->
+    <meta charset="UTF-8">
+
+    <!-- Makes the webpage responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Campus Media Hub</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fb;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        /* ---------- HEADER ---------- */
+
+        header {
+            background-color: #14213d;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-family: Georgia, serif;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #fca311;
+        }
+
+
+        /* ---------- HERO ---------- */
+
+        .hero {
+            min-height: 420px;
+
+            background-image:
+                linear-gradient(
+                    rgba(20, 33, 61, 0.7),
+                    rgba(20, 33, 61, 0.7)
+                ),
+                url("campus.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            color: white;
+            padding: 40px;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+
+        /* ---------- COMMON SECTION ---------- */
+
+        section {
+            padding: 55px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            color: #14213d;
+            font-size: 32px;
+        }
+
+
+        /* ---------- ABOUT ---------- */
+
+        .about {
+            background-color: white;
+            text-align: center;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: auto;
+            color: #555;
+        }
+
+
+        /* ---------- CAMPUS TABLE ---------- */
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #14213d;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f0f3f8;
+        }
+
+
+        /* ---------- MEDIA SECTION ---------- */
+
+        .media-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .media-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .media-card h3 {
+            color: #14213d;
+            margin-bottom: 15px;
+        }
+
+        audio {
+            width: 100%;
+        }
+
+        video {
+            width: 100%;
+            max-height: 300px;
+            border-radius: 10px;
+        }
+
+
+        /* ---------- IFRAME ---------- */
+
+        .iframe-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 10px;
+        }
+
+
+        /* ---------- EMBED ---------- */
+
+        .embed-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        embed {
+            width: 100%;
+            height: 350px;
+            border: 1px solid #ccc;
+        }
+
+
+        /* ---------- REGISTRATION ---------- */
+
+        .form-section {
+            background-color: #e9eef5;
+        }
+
+        form {
+            max-width: 750px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        fieldset {
+            border: 2px solid #dce2eb;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        legend {
+            padding: 0 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #14213d;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #bbb;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 7px;
+        }
+
+        .inline-label {
+            display: inline-block;
+            margin-right: 20px;
+            font-weight: normal;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: 2px solid #fca311;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background-color: #14213d;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #fca311;
+            color: #14213d;
+        }
+
+
+        /* ---------- PROGRESS ---------- */
+
+        .progress-box {
+            margin-bottom: 25px;
+        }
+
+        progress {
+            width: 100%;
+            height: 20px;
+        }
+
+
+        /* ---------- FOOTER ---------- */
+
+        footer {
+            background-color: #14213d;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+
+        /* ---------- RESPONSIVE DESIGN ---------- */
+
+        @media (max-width: 800px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .media-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h2 {
+                font-size: 38px;
+            }
+        }
+
+
+        @media (max-width: 500px) {
+
+            section {
+                padding: 40px 5%;
+            }
+
+            nav a {
+                margin: 5px;
+                display: inline-block;
+            }
+
+            .hero h2 {
+                font-size: 30px;
+            }
+
+            form {
+                padding: 20px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <h1>🎓 Campus Media Hub</h1>
+
+        <nav>
+
+            <a href="#home">Home</a>
+            <a href="#media">Media</a>
+            <a href="#events">Events</a>
+            <a href="#register">Register</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+
+                <h2>Experience Campus Life</h2>
+
+                <p>
+                    Discover events, explore campus activities,
+                    listen to student stories and connect with
+                    the college community.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ABOUT ================= -->
+
+        <section class="about">
+
+            <div class="section-title">
+
+                <h2>Welcome to Campus Media Hub</h2>
+
+            </div>
+
+            <p>
+                Campus Media Hub is a digital platform created to
+                showcase student activities, campus events,
+                multimedia content and important information.
+                Explore the different sections below and register
+                for upcoming activities.
+            </p>
+
+        </section>
+
+
+        <!-- ================= CAMPUS INFORMATION ================= -->
+
+        <section>
+
+            <div class="section-title">
+
+                <h2>Campus Highlights</h2>
+
+            </div>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Facility</th>
+                            <th>Availability</th>
+                            <th>Location</th>
+                            <th>Timing</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Central Library</td>
+                            <td>Available</td>
+                            <td>Main Block</td>
+                            <td>8 AM - 8 PM</td>
+                        </tr>
+
+                        <tr>
+                            <td>Innovation Lab</td>
+                            <td>Available</td>
+                            <td>Technology Block</td>
+                            <td>9 AM - 6 PM</td>
+                        </tr>
+
+                        <tr>
+                            <td>Sports Complex</td>
+                            <td>Available</td>
+                            <td>Sports Block</td>
+                            <td>6 AM - 8 PM</td>
+                        </tr>
+
+                        <tr>
+                            <td>Auditorium</td>
+                            <td>Reserved</td>
+                            <td>Admin Block</td>
+                            <td>10 AM - 5 PM</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= AUDIO & VIDEO ================= -->
+
+        <section id="media">
+
+            <div class="section-title">
+
+                <h2>Campus Media</h2>
+
+                <p>
+                    Explore audio and video content from campus.
+                </p>
+
+            </div>
+
+
+            <div class="media-container">
+
+
+                <!-- AUDIO -->
+
+                <article class="media-card">
+
+                    <h3>🎵 Campus Radio</h3>
+
+                    <p>
+                        Listen to our campus introduction.
+                    </p>
+
+                    <br>
+
+                    <audio controls>
+
+                        <source
+                            src="campus-audio.mp3"
+                            type="audio/mpeg">
+
+                        Your browser does not support audio.
+
+                    </audio>
+
+                </article>
+
+
+                <!-- VIDEO -->
+
+                <article class="media-card">
+
+                    <h3>🎥 Campus Tour</h3>
+
+                    <video controls>
+
+                        <source
+                            src="campus-tour.mp4"
+                            type="video/mp4">
+
+                        Your browser does not support video.
+
+                    </video>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= IFRAME ================= -->
+
+        <section>
+
+            <div class="section-title">
+
+                <h2>Explore Our Campus</h2>
+
+    \
+      
+
+            </div>
+
+
+            <div class="iframe-container">
+
+                <!-- iframe embeds external web content -->
+
+                <iframe
+                    
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.634590681229!2d77.95052773751205!3d10.371073849085365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00ab726a864907%3A0xa2e8fd7942c4dd7!2sSavariar%20car%20parking!5e0!3m2!1sen!2sin!4v1748883176640!5m2!1sen!2sin" 
+        width="100%" 
+        height="350" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+                    title="Campus Map">
+                
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= EMBED ================= -->
+
+        <section>
+
+            <div class="section-title">
+
+                <h2>Student Handbook</h2>
+
+                <p>
+                    Embedded document section.
+                </p>
+
+            </div>
+
+
+            <div class="embed-container">
+
+                <!--
+                    Place a PDF named student-handbook.pdf
+                    in the same folder as this HTML file.
+                -->
+
+                <embed
+                    src="Internship Report Mita IT Solutions.pdf"
+                    type="application/pdf">
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= EVENT REGISTRATION ================= -->
+
+        <section class="form-section" id="register">
+
+            <div class="section-title">
+
+                <h2>Event Registration</h2>
+
+                <p>
+                    Register for upcoming campus activities.
+                </p>
+
+            </div>
+
+
+            <form
+                action="#"
+                method="get">
+
+
+                <!-- PERSONAL INFORMATION -->
+
+                <fieldset>
+
+                    <legend>Personal Information</legend>
+
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your name"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="example@email.com"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter phone number">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="dob">
+                            Date of Birth
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dob"
+                            name="dob">
+
+                    </div>
+
+
+                </fieldset>
+
+
+                <!-- EVENT INFORMATION -->
+
+                <fieldset>
+
+                    <legend>Event Details</legend>
+
+
+                    <div class="form-group">
+
+                        <label for="event">
+                            Select Event
+                        </label>
+
+                        <select
+                            id="event"
+                            name="event"
+                            required>
+
+                            <option value="">
+                                -- Choose an event --
+                            </option>
+
+                            <option value="techfest">
+                                Technology Fest
+                            </option>
+
+                            <option value="cultural">
+                                Cultural Night
+                            </option>
+
+                            <option value="sports">
+                                Sports Meet
+                            </option>
+
+                            <option value="workshop">
+                                Web Development Workshop
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Participation Type
+                        </label>
+
+                        <label class="inline-label">
+
+                            <input
+                                type="radio"
+                                name="type"
+                                value="participant">
+
+                            Participant
+
+                        </label>
+
+
+                        <label class="inline-label">
+
+                            <input
+                                type="radio"
+                                name="type"
+                                value="volunteer">
+
+                            Volunteer
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Areas of Interest
+                        </label>
+
+                        <label class="inline-label">
+
+                            <input
+                                type="checkbox"
+                                name="interest"
+                                value="coding">
+
+                            Coding
+
+                        </label>
+
+
+                        <label class="inline-label">
+
+                            <input
+                                type="checkbox"
+                                name="interest"
+                                value="design">
+
+                            Design
+
+                        </label>
+
+
+                        <label class="inline-label">
+
+                            <input
+                                type="checkbox"
+                                name="interest"
+                                value="media">
+
+                            Media
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="experience">
+                            Experience Level
+                        </label>
+
+                        <input
+                            type="range"
+                            id="experience"
+                            name="experience"
+                            min="0"
+                            max="10"
+                            value="5">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="comments">
+                            Additional Comments
+                        </label>
+
+                        <textarea
+                            id="comments"
+                            name="comments"
+                            placeholder="Enter your message...">
+                        </textarea>
+
+                    </div>
+
+
+                </fieldset>
+
+
+                <!-- REGISTRATION PROGRESS -->
+
+                <div class="progress-box">
+
+                    <label>
+                        Registration Capacity
+                    </label>
+
+                    <progress
+                        value="70"
+                        max="100">
+                    </progress>
+
+                    <p>
+                        70% seats filled
+                    </p>
+
+                </div>
+
+
+                <!-- FORM BUTTONS -->
+
+                <button type="submit">
+                    Register for Event
+                </button>
+
+                <br><br>
+
+                <button type="reset">
+                    Clear Form
+                </button>
+
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h3>Campus Media Hub</h3>
+
+        <p>
+            Connecting students through technology and creativity.
+        </p>
+
+        <p>
+            © 2026 Campus Media Hub
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
+```

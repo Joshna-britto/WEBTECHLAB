@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fruit Farm</title>
+</head>
+<body>
+
+    <h1>Fruit Farm</h1>
+
+    Rows:
+    <input type="number" id="rows">
+
+    Columns:
+    <input type="number" id="columns">
+
+    <br><br>
+
+    <button onclick="grow()">Plant Garden</button>
+
+    <div id="garden"></div>
+
+    <script>
+        function grow() {
+
+            var rows = parseInt(
+                document.getElementById("rows").value
+            );
+
+            var columns = parseInt(
+                document.getElementById("columns").value
+            );
+
+            var fruits = ["images/apple.png.png",
+                          "images/orange.png.jpg"];
+
+            var garden = document.getElementById("garden");
+
+            garden.innerHTML = "";
+
+            for (var i = 0; i < rows; i++) {
+
+                for (var j = 0; j < columns; j++) {
+
+                    var number = Math.floor(Math.random() * 2);
+
+                    garden.innerHTML +=
+                        "<img src='" + fruits[number] +
+                        "' width='100' height='100'>";
+                }
+
+                garden.innerHTML += "<br>";
+            }
+        }
+    </script>
+
+</body>
+</html>

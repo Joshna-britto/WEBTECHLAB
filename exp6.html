@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Timer Functions and Arrays</title>
+</head>
+
+<body onload="init()">
+
+    <h1>JavaScript Timer Functions and Arrays</h1>
+
+    <hr>
+
+    <!-- 1. DIGITAL CLOCK -->
+    <h2>1. Digital Clock</h2>
+
+    <h3 id="time"></h3>
+
+    <script>
+        function display() {
+
+            var d = new Date();
+
+            var hours = d.getHours();
+            var minutes = d.getMinutes();
+            var seconds = d.getSeconds();
+
+            document.getElementById("time").innerHTML =
+                hours + ":" + minutes + ":" + seconds;
+        }
+
+        setInterval(display, 1000);
+        display();
+    </script>
+
+    <hr>
+
+    <!-- 2. DYNAMIC BACKGROUND -->
+    <h2>2. Dynamic Background Colour</h2>
+
+    <p>Background colour changes automatically every 30 seconds.</p>
+
+    <script>
+        function setBackgroundColor() {
+
+            var red = Math.floor(Math.random() * 255);
+            var green = Math.floor(Math.random() * 255);
+            var blue = Math.floor(Math.random() * 255);
+
+            var color = "rgb(" + red + "," +
+                        green + "," + blue + ")";
+
+            document.body.style.backgroundColor = color;
+        }
+
+        setInterval(setBackgroundColor, 30000);
+    </script>
+
+    <hr>
+
+    <!-- 3. CHANGE FONT SIZE -->
+    <h2>3. Change Font Size</h2>
+
+    <p id="para1"
+       onmouseover="incSize()"
+       onmouseout="decSize()">
+
+       Move cursor over me to zoom in...
+
+    </p>
+
+    <script>
+        function incSize() {
+
+            document.getElementById("para1")
+                .style.fontSize = "28px";
+        }
+
+        function decSize() {
+
+            document.getElementById("para1")
+                .style.fontSize = "16px";
+        }
+    </script>
+
+    <hr>
+
+    <!-- 4. MOVE AND STOP CAR -->
+    <h2>4. Move and Stop Car</h2>
+
+    <img id="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGhgvOMsyOkUHvU0lJFSeMixcNbjfZvZYfQyzp3dtW7w&s=10"
+         width="150" height="100">
+
+    <br><br>
+
+    <button onclick="moveRight()">Move</button>
+
+    <button onclick="stop()">Stop</button>
+
+    <script>
+        var imgObj;
+        var animate;
+
+        function init() {
+
+            imgObj = document.getElementById("img");
+
+            imgObj.style.position = "relative";
+            imgObj.style.left = "0px";
+        }
+
+        function moveRight() {
+
+            clearTimeout(animate);
+
+            imgObj.style.left =
+                parseInt(imgObj.style.left) + 1 + "px";
+
+            animate = setTimeout(moveRight, 10);
+        }
+
+        function stop() {
+
+            clearTimeout(animate);
+        }
+    </script>
+
+    <hr>
+
+    <!-- 5. ARRAY OF STUDENT OBJECTS -->
+    <h2>5. Student Details Using Array of Objects</h2>
+
+    <div id="demo"></div>
+
+    <script>
+
+        var students = [
+
+            {
+                name: "John",
+                regno: "UR13CS129",
+                year: 1999
+            },
+
+            {
+                name: "Priya",
+                regno: "UR23CS101",
+                year: 2002
+            },
+
+            {
+                name: "Arun",
+                regno: "UR22CS105",
+                year: 2001
+            },
+
+            {
+                name: "David",
+                regno: "UR19CS120",
+                year: 1998
+            }
+
+        ];
+
+        for (var i = 0; i < students.length; i++) {
+
+            document.getElementById("demo").innerHTML +=
+                students[i].name +
+                "'s Register Number is " +
+                students[i].regno + "<br>";
+
+            if (students[i].year < 2000) {
+
+                document.getElementById("demo").innerHTML +=
+                    "Born Before 2000<br><br>";
+
+            }
+            else {
+
+                document.getElementById("demo").innerHTML +=
+                    "Born After 2000<br><br>";
+
+            }
+        }
+
+    </script>
+
+    <hr>
+
+    <h3>End of JavaScript Experiment</h3>
+
+</body>
+</html>

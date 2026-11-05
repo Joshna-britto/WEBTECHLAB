@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Directives</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            text-align: center;
+        }
+
+        .container {
+            background-color: white;
+            width: 350px;
+            margin: 25px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input, textarea, select {
+            padding: 8px;
+            margin: 8px;
+            width: 200px;
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        h2 {
+            color: blue;
+        }
+
+        li {
+            margin: 10px;
+            text-align: left;
+        }
+    </style>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        // Comment Box Controller
+        app.controller("CommentController", function($scope) {
+
+            $scope.comments = [];
+
+            $scope.addComment = function() {
+
+                if ($scope.txtcomment) {
+                    $scope.comments.push($scope.txtcomment);
+                    $scope.txtcomment = "";
+                }
+
+            };
+
+            $scope.removeComment = function(index) {
+                $scope.comments.splice(index, 1);
+            };
+
+        });
+
+
+        // Calculator Controller
+        app.controller("CalculatorController", function($scope) {
+
+            $scope.calculate = function() {
+
+                var a = Number($scope.a);
+                var b = Number($scope.b);
+
+                if ($scope.operator == "+") {
+                    return a + b;
+                }
+
+                if ($scope.operator == "-") {
+                    return a - b;
+                }
+
+                if ($scope.operator == "*") {
+                    return a * b;
+                }
+
+                if ($scope.operator == "/") {
+
+                    if (b == 0) {
+                        return "Cannot divide by zero";
+                    }
+
+                    return a / b;
+                }
+
+            };
+
+        });
+
+
+        // To-Do List Controller
+        app.controller("TodoController", function($scope) {
+
+            $scope.tasks = [];
+
+            $scope.addTask = function() {
+
+                if ($scope.title) {
+                    $scope.tasks.push($scope.title);
+                    $scope.title = "";
+                }
+
+            };
+
+            $scope.removeTask = function(index) {
+                $scope.tasks.splice(index, 1);
+            };
+
+        });
+
+    </script>
+
+</head>
+
+<body>
+
+    <h1>AngularJS Directives</h1>
+
+
+    <!-- 1. Comment Box -->
+
+    <div class="container" ng-controller="CommentController">
+
+        <h2>Comment Box</h2>
+
+        <textarea ng-model="txtcomment"
+                  placeholder="Enter your comment"></textarea>
+
+        <br>
+
+        <button ng-click="addComment()">Post Comment</button>
+
+        <h3>Comments</h3>
+
+        <ul>
+            <li ng-repeat="comnt in comments">
+                {{ comnt }}
+
+                <button ng-click="removeComment($index)">Delete</button>
+            </li>
+        </ul>
+
+    </div>
+
+
+    <!-- 2. Simple Calculator -->
+
+    <div class="container" ng-controller="CalculatorController">
+
+        <h2>Simple Calculator</h2>
+
+        <input type="number" ng-model="a" placeholder="Enter Number 1">
+
+        <br>
+
+        <input type="number" ng-model="b" placeholder="Enter Number 2">
+
+        <br>
+
+        <select ng-model="operator">
+            <option value="+">Addition (+)</option>
+            <option value="-">Subtraction (-)</option>
+            <option value="*">Multiplication (*)</option>
+            <option value="/">Division (/)</option>
+        </select>
+
+        <h3>Result: {{ calculate() }}</h3>
+
+    </div>
+
+
+    <!-- 3. To-Do List -->
+
+    <div class="container" ng-controller="TodoController">
+
+        <h2>To-Do List</h2>
+
+        <input type="text"
+               ng-model="title"
+               placeholder="Enter your task">
+
+        <br>
+
+        <button ng-click="addTask()">Add Task</button>
+
+        <h3>My Tasks</h3>
+
+        <ul>
+            <li ng-repeat="t in tasks">
+                {{ t }}
+
+                <button ng-click="removeTask($index)">Delete</button>
+            </li>
+        </ul>
+
+    </div>
+
+</body>
+</html>

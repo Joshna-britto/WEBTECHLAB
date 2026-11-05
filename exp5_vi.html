@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cake Order Form</title>
+</head>
+<body>
+
+    <h1>Birthday Cake Order Form</h1>
+
+    <fieldset>
+
+        Number of 1/2 kg Cakes:
+        <input type="number" id="small" value="0">
+        <br><br>
+
+        Number of 1 kg Cakes:
+        <input type="number" id="medium" value="0">
+        <br><br>
+
+        Number of 2 kg Cakes:
+        <input type="number" id="large" value="0">
+        <br><br>
+
+        Tip:
+
+        <label>
+            <input type="radio" value="10" name="tip">
+            10%
+        </label>
+
+        <label>
+            <input type="radio" value="15" name="tip"
+                   checked>
+            15%
+        </label>
+
+        <label>
+            <input type="radio" value="20" name="tip">
+            20%
+        </label>
+
+        <br><br>
+
+        <button id="submit">Calculate Order</button>
+
+    </fieldset>
+
+    <p>Cost of Order: ₹<span id="price"></span></p>
+
+    <script>
+
+        document.getElementById("submit")
+            .addEventListener("click", calculate);
+
+        function calculate() {
+
+            var small = parseInt(
+                document.getElementById("small").value
+            );
+
+            var medium = parseInt(
+                document.getElementById("medium").value
+            );
+
+            var large = parseInt(
+                document.getElementById("large").value
+            );
+
+            var total = (small * 100) +
+                        (medium * 200) +
+                        (large * 400);
+
+            // Calculate 9% tax
+            var tax = total * 0.09;
+
+            var afterTax = total + tax;
+
+            // Get selected tip
+            var tip = parseFloat(
+                document.querySelector(
+                    'input[name="tip"]:checked'
+                ).value
+            );
+
+            var tipAmount = afterTax * tip / 100;
+
+            var finalPrice = afterTax + tipAmount;
+
+            document.getElementById("price").innerHTML =
+                finalPrice.toFixed(2);
+        }
+
+    </script>
+
+</body>
+</html>

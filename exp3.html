@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusConnect</title>
+
+    <style>
+
+        /* ---------- BASIC STYLING ---------- */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fb;
+            color: #222;
+            line-height: 1.6;
+        }
+
+
+        /* ---------- HEADER ---------- */
+
+        header {
+            background-color: #14213d;
+            color: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            /* Margin and padding */
+            margin-bottom: 0;
+        }
+
+        .logo {
+            font-family: Georgia, serif;
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 12px;
+        }
+
+        nav li {
+            display: inline;
+        }
+
+        nav a {
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: white;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        /* Link pseudo-classes */
+
+        nav a:link {
+            background-color: transparent;
+        }
+
+        nav a:visited {
+            color: #ddd;
+        }
+
+        nav a:hover {
+            background-color: #fca311;
+            color: #14213d;
+        }
+
+        nav a:active {
+            background-color: white;
+            color: #14213d;
+        }
+
+
+        /* ---------- HERO ---------- */
+
+        .hero {
+            min-height: 430px;
+
+            background-color: #284b63;
+            background-image: url("campus.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+
+            padding: 60px 8%;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            background-color: rgba(20, 33, 61, 0.85);
+            padding: 35px;
+            border-radius: 15px;
+        }
+
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: white;
+
+            text-shadow: 3px 3px 5px black;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: #eeeeee;
+        }
+
+        .hero-button {
+            display: inline;
+            background-color: #fca311;
+            color: #14213d;
+            text-decoration: none;
+            padding: 12px 25px;
+            font-weight: bold;
+            border-radius: 25px;
+        }
+
+        .hero-button:hover {
+            background-color: white;
+        }
+
+
+        /* ---------- COMMON SECTION ---------- */
+
+        section {
+            padding: 60px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            color: #14213d;
+            font-family: Georgia, serif;
+            font-size: 34px;
+            letter-spacing: 1px;
+        }
+
+        .section-title p {
+            color: #666;
+            margin-top: 8px;
+        }
+
+
+        /* ---------- EVENTS ---------- */
+
+        .events {
+            display: grid;
+
+            /* Multicolumn layout */
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .event-card {
+            background-color: white;
+            padding: 25px;
+
+            margin: 5px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+            min-height: 230px;
+        }
+
+        .event-card h3 {
+            color: #14213d;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .event-date {
+            color: #fca311;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .event-card p {
+            color: #555;
+        }
+
+
+        /* ---------- MULTI COLUMN NEWS ---------- */
+
+        .news-section {
+            background-color: #e9eef5;
+        }
+
+        .news-container {
+            background-color: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            /* CSS multi-column layout */
+            column-count: 2;
+            column-gap: 45px;
+        }
+
+        .news-container h3 {
+            color: #14213d;
+            margin-bottom: 10px;
+        }
+
+        .news-container p {
+            text-align: justify;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* ---------- CLUBS ---------- */
+
+        .clubs {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .club {
+            width: 220px;
+            height: 180px;
+
+            background-color: white;
+
+            padding: 25px;
+
+            margin: 10px;
+
+            text-align: center;
+
+            border-radius: 15px;
+
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+            transition: 0.3s;
+        }
+
+        .club:hover {
+            transform: translateY(-8px);
+            background-color: #fff5df;
+        }
+
+        .club-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .club h3 {
+            color: #14213d;
+        }
+
+
+        /* ---------- STUDENT SPOTLIGHT ---------- */
+
+        .spotlight {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+
+            background-color: #14213d;
+
+            color: white;
+
+            padding: 40px;
+
+            border-radius: 20px;
+
+            margin-top: 20px;
+        }
+
+        .spotlight-img {
+            width: 180px;
+            height: 180px;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+            border: 5px solid #fca311;
+        }
+
+        .spotlight-content h2 {
+            font-family: Georgia, serif;
+            margin-bottom: 12px;
+        }
+
+        .spotlight-content p {
+            color: #ddd;
+        }
+
+
+        /* ---------- LINKS ---------- */
+
+        .links-container {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-top: 20px;
+        }
+
+        .quick-link {
+            display: block;
+
+            background-color: white;
+
+            padding: 20px;
+
+            text-align: center;
+
+            color: #14213d;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            border-radius: 10px;
+
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .quick-link:hover {
+            background-color: #fca311;
+        }
+
+
+        /* ---------- FOOTER ---------- */
+
+        footer {
+            background-color: #14213d;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 30px;
+
+            margin-top: 30px;
+        }
+
+        footer h3 {
+            font-family: Georgia, serif;
+            margin-bottom: 8px;
+        }
+
+        footer p {
+            color: #ccc;
+        }
+
+
+        /* =================================================
+           RESPONSIVE DESIGN
+           ================================================= */
+
+
+        /* TABLET */
+
+        @media (max-width: 900px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .events {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .links-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav a {
+                padding: 6px 9px;
+                font-size: 14px;
+            }
+
+            .hero {
+                padding: 35px 5%;
+                min-height: 400px;
+            }
+
+            .hero-content {
+                padding: 25px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 40px 5%;
+            }
+
+            /* One column on mobile */
+
+            .events {
+                grid-template-columns: 1fr;
+            }
+
+            /*
+              Multicolumn content becomes
+              normal single-column flow.
+            */
+
+            .news-container {
+                column-count: 1;
+            }
+
+            .spotlight {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .links-container {
+                grid-template-columns: 1fr;
+            }
+
+            .club {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="logo">
+            CampusConnect
+        </div>
+
+        <nav>
+
+            <ul>
+
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+
+                <li>
+                    <a href="#events">Events</a>
+                </li>
+
+                <li>
+                    <a href="#clubs">Clubs</a>
+                </li>
+
+                <li>
+                    <a href="#news">News</a>
+                </li>
+
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+
+                <h1>
+                    Your Campus.<br>
+                    Your Community.
+                </h1>
+
+                <p>
+                    Discover events, connect with student clubs,
+                    explore campus activities and stay updated
+                    with everything happening around you.
+                </p>
+
+                <a href="#events" class="hero-button">
+                    Explore Events
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= EVENTS ================= -->
+
+        <section id="events">
+
+            <div class="section-title">
+
+                <h2>Upcoming Events</h2>
+
+                <p>
+                    Something exciting is always happening on campus.
+                </p>
+
+            </div>
+
+
+            <div class="events">
+
+
+                <article class="event-card">
+
+                    <div class="event-date">
+                        15 SEPTEMBER
+                    </div>
+
+                    <h3>TechFest 2026</h3>
+
+                    <p>
+                        Participate in coding challenges, project
+                        exhibitions and technology workshops.
+                    </p>
+
+                </article>
+
+
+                <article class="event-card">
+
+                    <div class="event-date">
+                        20 SEPTEMBER
+                    </div>
+
+                    <h3>Cultural Night</h3>
+
+                    <p>
+                        Experience music, dance, drama and
+                        cultural performances by students.
+                    </p>
+
+                </article>
+
+
+                <article class="event-card">
+
+                    <div class="event-date">
+                        25 SEPTEMBER
+                    </div>
+
+                    <h3>Sports Meet</h3>
+
+                    <p>
+                        Show your skills and compete in
+                        exciting indoor and outdoor events.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= NEWS ================= -->
+
+        <section class="news-section" id="news">
+
+            <div class="section-title">
+
+                <h2>Campus News</h2>
+
+                <p>
+                    Latest updates from the student community.
+                </p>
+
+            </div>
+
+
+            <div class="news-container">
+
+                <h3>New Innovation Lab Opened</h3>
+
+                <p>
+                    The new innovation laboratory provides students
+                    with modern facilities for developing projects,
+                    experimenting with emerging technologies and
+                    collaborating with other departments.
+                </p>
+
+
+                <h3>Inter-College Hackathon</h3>
+
+                <p>
+                    Students can register for the upcoming
+                    inter-college hackathon. Teams can work on
+                    real-world problems and present their solutions
+                    to a panel of industry experts.
+                </p>
+
+
+                <h3>Placement Preparation Week</h3>
+
+                <p>
+                    A special placement preparation programme will
+                    include aptitude training, coding sessions,
+                    resume workshops and mock interviews.
+                </p>
+
+
+                <h3>Student Achievement</h3>
+
+                <p>
+                    Our students recently participated in several
+                    national-level competitions and represented the
+                    institution with innovative technical projects.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CLUBS ================= -->
+
+        <section id="clubs">
+
+            <div class="section-title">
+
+                <h2>Student Clubs</h2>
+
+                <p>
+                    Find a community that matches your interests.
+                </p>
+
+            </div>
+
+
+            <div class="clubs">
+
+
+                <div class="club">
+
+                    <div class="club-icon">
+                        💻
+                    </div>
+
+                    <h3>Code Club</h3>
+
+                    <p>
+                        Coding & technology
+                    </p>
+
+                </div>
+
+
+                <div class="club">
+
+                    <div class="club-icon">
+                        🎨
+                    </div>
+
+                    <h3>Design Club</h3>
+
+                    <p>
+                        Art & creativity
+                    </p>
+
+                </div>
+
+
+                <div class="club">
+
+                    <div class="club-icon">
+                        📸
+                    </div>
+
+                    <h3>Photography</h3>
+
+                    <p>
+                        Photography & media
+                    </p>
+
+                </div>
+
+
+                <div class="club">
+
+                    <div class="club-icon">
+                        🎤
+                    </div>
+
+                    <h3>Cultural Club</h3>
+
+                    <p>
+                        Music & performance
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SPOTLIGHT ================= -->
+
+        <section>
+
+            <div class="spotlight">
+
+                <img
+                    src="student.jpg"
+                    alt="Student"
+                    class="spotlight-img"
+                >
+
+                <div class="spotlight-content">
+
+                    <h2>
+                        Student Spotlight
+                    </h2>
+
+                    <p>
+                        Meet our student innovators who are building
+                        creative solutions, participating in
+                        competitions and making a difference in
+                        the campus community.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= QUICK LINKS ================= -->
+
+        <section id="contact">
+
+            <div class="section-title">
+
+                <h2>Quick Links</h2>
+
+                <p>
+                    Everything you need in one place.
+                </p>
+
+            </div>
+
+
+            <div class="links-container">
+
+                <a href="#" class="quick-link">
+                    📚 Library
+                </a>
+
+                <a href="#" class="quick-link">
+                    📝 Academics
+                </a>
+
+                <a href="#" class="quick-link">
+                    💼 Placements
+                </a>
+
+                <a href="#" class="quick-link">
+                    📞 Contact
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h3>
+            CampusConnect
+        </h3>
+
+        <p>
+            Connecting students. Building communities.
+        </p>
+
+        <p>
+            © 2026 CampusConnect
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
